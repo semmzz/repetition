@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
+
+.post{
+    background-color: rgba(126, 180, 208, 0.7);
+
+    padding: 15px;
+    display: flex;
+    box-sizing: border-box;
+    border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+
+
+.title{
+
+}
+
+.description{
+
+}
+
+
+.buttonDelete {
+    font-family: 'Titillium Web', sans-serif;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #00BCD4;
+    background: #ECECEC;
+    border-radius: 0 15px 15px 0;
+    transition: .4s;
+}
+
+.buttonDelete:hover {
+    background: #636363;
+}
