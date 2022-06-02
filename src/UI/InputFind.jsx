@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ButtonDeletePost = () => {
+const InputFind = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const ButtonDeletePost = () => {
     );
 };
 
-export default ButtonDeletePost;
+export default InputFind;

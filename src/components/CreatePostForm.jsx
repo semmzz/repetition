@@ -18,27 +18,26 @@ const CreatePostForm = ({addPost, setModalActive}) => {
     }
 
     return (
-        <div className={cl.blockForm}>
-            <form>
-                <input className={cl.inputInForm}
-                       placeholder='Enter Title'
-                       value={title}
-                       onChange={e => setTitle(e.target.value)}
-                />
-                <input className={cl.inputInForm}
-                       placeholder='Enter Description'
-                       value={body}
-                       onChange={e => setBody(e.target.value)}
-                />
-                <div className={cl.buttonCreate}>
-                    <button style={{color: "black"}}
-                            onClick={addNewPost}
-                    >Add post
-                    </button>
-                </div>
-            </form>
 
-        </div>
+        <form className={cl.blockForm}>
+            <input className={cl.inputInForm}
+                   placeholder='Enter Title'
+                   value={title}
+                   onChange={e => setTitle(e.target.value)}
+            />
+            <input className={cl.inputInForm}
+                   placeholder='Enter Description'
+                   value={body}
+                   onChange={e => setBody(e.target.value)}
+            />
+            <div className={cl.buttonCreate}>
+                <button style={{color: "black"}}
+                        onClick={addNewPost}
+                >Add post
+                </button>
+            </div>
+        </form>
+
     );
 };
 

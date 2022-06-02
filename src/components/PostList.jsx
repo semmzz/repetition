@@ -14,11 +14,10 @@ const PostList = ({posts, ...props}) => {
                 <PostItem
                     player={pl}
                     index={i + 1}
-                    deletePlayer={props.deletePlayer}
+                    deletePost={props.deletePost}
+                    key={pl.id}
                 />
             )}
-
-
         </div>
     );
 };

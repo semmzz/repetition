@@ -3,9 +3,6 @@ import cl from './PostItem.module.css'
 
 const PostItem = ({player, ...props}) => {
 
-    const deletePost = _ => {
-        props.deletePlayer(player)
-    }
 
     return (
         <div className={cl.post}>
@@ -16,7 +13,7 @@ const PostItem = ({player, ...props}) => {
 
             <button
                 className={cl.buttonDelete}
-                onClick={deletePost}>Delete
+                onClick={_=> props.deletePost(player)}>Delete
             </button>
 
         </div>
