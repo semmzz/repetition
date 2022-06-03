@@ -1,11 +1,10 @@
 import React from 'react';
 
-const SelectSort = ({defaultValue, options, filter, setFilter}) => {
+const SelectSort = ({defaultValue, options, ...props}) => {
     return (
         <select
             style={{color: "black", backgroundColor: 'white', marginTop: 10}}
-            value={filter.sort}
-            onChange={e=> setFilter({...filter, sort: e.target.value})}
+            {...props}
         >
             <option disabled value=''>{defaultValue}</option>
 

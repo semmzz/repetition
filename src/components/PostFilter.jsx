@@ -7,13 +7,13 @@ const PostFilter = ({filter, setFilter}) => {
     return (
         <div>
             <InputFind
-                filter={filter}
-                setFilter={setFilter}
+                value={filter.query}
+                onChange={e => setFilter({...filter, query: e.target.value})}
             />
 
             <SelectFind
-                filter={filter}
-                setFilter={setFilter}
+                value={filter.find}
+                onChange={e => setFilter({...filter, find: e.target.value})}
 
                 options={[
                     {value: 'all', name: 'Везде'},
@@ -21,16 +21,19 @@ const PostFilter = ({filter, setFilter}) => {
                     {value: 'body', name: 'В описании'},
                 ]}
             />
+
             <br/>
 
             <SelectSort
+                value={filter.sort}
+                onChange={e => setFilter({...filter, sort: e.target.value})}
+
                 defaultValue="Сортировать:"
                 options={[
                     {value: 'title', name: 'По названию'},
                     {value: 'body', name: 'По описанию'},
                 ]}
-                filter={filter}
-                setFilter={setFilter}
+
             />
         </div>
     );

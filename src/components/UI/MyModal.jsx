@@ -5,15 +5,15 @@ const MyModal = ({children, active, setActive}) => {
 
     const rootClass = [cl.modal]
 
-    if(active){
+    if (active) {
         rootClass.push(cl.active)
     }
 
     return (
         <div className={rootClass.join(' ')}
-        onClick={_=> setActive(false)}
+             onClick={_ => setActive(false)}
         >
-            <div className={cl.modalContent} onClick={e=> e.stopPropagation()}>
+            <div className={cl.modalContent} onClick={e => e.stopPropagation()}>
                 {children}
             </div>
         </div>

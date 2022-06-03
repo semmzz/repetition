@@ -1,0 +1,15 @@
+.post-enter {
+    transform: translateX(-1000px);
+}
+.post-enter-active {
+    background-color: #9CC2E0FF;
+    transform: translateX(0px);
+    transition: transform 500ms ease-in;
+}
+.post-exit {
+    transform: translateX(0px);
+}
+.post-exit-active {
+    transform: translateX(-1000px) ;
+    transition: transform 500ms ease-in;
+}
