@@ -11,5 +11,5 @@
 }
 .post-exit-active {
     transform: translateX(-1000px) ;
-    transition: transform 500ms ease-in;
+    transition: transform 300ms ease-in;
 }
