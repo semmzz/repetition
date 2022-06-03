@@ -5,6 +5,7 @@ import CreatePostForm from "./components/CreatePostForm";
 import MyModal from "./components/UI/MyModal";
 import ButtonCreatePost from "./components/UI/ButtonCreatePost";
 import PostFilter from "./components/PostFilter";
+import {usePosts} from "./components/hooks/usePosts";
 
 function App() {
     const [posts, setPosts] = useState([
@@ -27,27 +28,7 @@ function App() {
 
     const [modalActive, setModalActive] = useState(false);
 
-    const sortedPosts = useMemo(() => {
-        if (filter.sort) {
-            return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
-        }
-        return posts;
-    }, [filter.sort, posts])
-
-
-    const sortedAndSearchedPosts = useMemo(() => {
-        // eslint-disable-next-line default-case
-        switch (filter.find) {
-            case 'all':
-                return sortedPosts.filter(el => el.title.toLowerCase().includes(filter.query.toLowerCase())
-                    || el.body.toLowerCase().includes(filter.query.toLowerCase()))
-            case 'title':
-                return sortedPosts.filter(el => el.title.toLowerCase().includes(filter.query.toLowerCase()))
-            case 'body':
-                return sortedPosts.filter(el => el.body.toLowerCase().includes(filter.query.toLowerCase()))
-        }
-    }, [filter.query, sortedPosts, filter.find]);
-
+    const sortedAndSearchedPosts = usePosts(posts, filter);
 
     return (
         <div className="App">
