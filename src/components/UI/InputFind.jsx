@@ -1,10 +1,10 @@
 import React from 'react';
 
-const InputFind = ({value, onChange}) => {
+const InputFind = ({filter, setFilter}) => {
     return (
         <input type="text" style={{marginTop: 15, color: "black"}}
-               value={value}
-               onChange={e => onChange(e.target.value)}
+               value={filter.query}
+               onChange={e => setFilter({...filter, query: e.target.value})}
                placeholder='Find...'
         />
     );

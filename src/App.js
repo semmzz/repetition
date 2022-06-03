@@ -1,26 +1,21 @@
 import './App.css';
 import PostList from "./components/PostList";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import CreatePostForm from "./components/CreatePostForm";
 import MyModal from "./components/UI/MyModal";
 import ButtonCreatePost from "./components/UI/ButtonCreatePost";
-import SelectSort from "./components/UI/SelectSort";
-import InputFind from "./components/UI/InputFind";
-import SelectFind from "./components/UI/SelectFind";
+import PostFilter from "./components/PostFilter";
 
 function App() {
-
-
     const [posts, setPosts] = useState([
-        {id: 6546645, title: 'Dendi', body: "Liquid"},
-        {id: 4323312, title: 'zzMiracle', body: "zAOG"},
-        {id: 5435433, title: 'MYatoro', body: "Cis Reject"},
-        {id: 6211326, title: 'Doxalk', body: "BetBoom"},
-        {id: 8444337, title: 'KuroKy', body: "Detchland"},
+        {id: 6546645, title: 'B', body: "Z"},
+        {id: 4323312, title: 'Z', body: "C"},
+        {id: 5435433, title: 'A', body: "B"},
+        {id: 6211326, title: 'C', body: "D"},
+        {id: 8444337, title: 'H', body: "A"},
     ])
 
     const deletePost = (player) => {
-
         setPosts(posts.filter(pl => player.id !== pl.id))
     }
 
@@ -28,42 +23,30 @@ function App() {
         setPosts([...posts, newPost])
     }
 
+    const [filter, setFilter] = useState({sort: '', query: '', find: 'all'});
+
     const [modalActive, setModalActive] = useState(false);
 
-    const [selectedSort, setSelectedSort] = useState('')
-
-    const sortPosts = (sort) => {
-        setSelectedSort(sort);
-
-    }
-
-    const [searchQuery, setSearchQuery] = useState('')
-
     const sortedPosts = useMemo(() => {
-        if (selectedSort) {
-            return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
-
+        if (filter.sort) {
+            return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
         }
         return posts;
-    }, [selectedSort, posts])
+    }, [filter.sort, posts])
 
-    const [selectedFind, setSelectedFind] = useState('all')
 
     const sortedAndSearchedPosts = useMemo(() => {
         // eslint-disable-next-line default-case
-        switch (selectedFind) {
+        switch (filter.find) {
             case 'all':
-                return sortedPosts.filter(el => el.title.toLowerCase().includes(searchQuery.toLowerCase())
-                    || el.body.toLowerCase().includes(searchQuery.toLowerCase()))
+                return sortedPosts.filter(el => el.title.toLowerCase().includes(filter.query.toLowerCase())
+                    || el.body.toLowerCase().includes(filter.query.toLowerCase()))
             case 'title':
-                return sortedPosts.filter(el => el.title.toLowerCase().includes(searchQuery.toLowerCase()))
+                return sortedPosts.filter(el => el.title.toLowerCase().includes(filter.query.toLowerCase()))
             case 'body':
-                return sortedPosts.filter(el => el.body.toLowerCase().includes(searchQuery.toLowerCase()))
-
+                return sortedPosts.filter(el => el.body.toLowerCase().includes(filter.query.toLowerCase()))
         }
-
-
-    }, [searchQuery, sortedPosts, selectedFind]);
+    }, [filter.query, sortedPosts, filter.find]);
 
 
     return (
@@ -75,32 +58,11 @@ function App() {
                         setModalActive={setModalActive}
                     />
 
-                    <InputFind
-                        value={searchQuery}
-                        onChange={setSearchQuery}
+                    <PostFilter
+                        filter={filter}
+                        setFilter={setFilter}
                     />
 
-                    <SelectFind
-                        value={selectedFind}
-                        setValue={setSelectedFind}
-
-                        options={[
-                            {value: 'all', name: 'Везде'},
-                            {value: 'title', name: 'В названии'},
-                            {value: 'body', name: 'В описании'},
-                        ]}
-                    />
-                    <br/>
-
-                    <SelectSort
-                        defaultValue="Сортировать:"
-                        options={[
-                            {value: 'title', name: 'По названию'},
-                            {value: 'body', name: 'По описанию'},
-                        ]}
-                        value={selectedSort}
-                        onChange={sortPosts}
-                    />
                     <MyModal
                         active={modalActive}
                         setActive={setModalActive}

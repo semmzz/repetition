@@ -1,10 +1,10 @@
 import React from 'react';
 
-const SelectFind = ({options, value, setValue}) => {
+const SelectFind = ({options, filter, setFilter}) => {
     return (
         <select name="" id="" style={{color: "black", backgroundColor: "white"}}
-                value={value}
-                onChange={e => setValue(e.target.value)}
+                value={filter.find}
+                onChange={e => setFilter({...filter, find: e.target.value})}
         >
             {options.map(op => (
                     <option key={op.value} value={op.value}>
