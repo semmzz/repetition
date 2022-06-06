@@ -9,3 +9,44 @@
 .content{
 
 }
+
+
+.page__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.pages{
+    display: flex;
+    justify-content: space-between;
+    max-width: 75%;
+    flex-wrap: wrap;
+}
+
+.page{
+    margin: 2px;
+    text-align: center;
+    min-width: 20px;
+    padding: 5px;
+    border: 1px solid #2039d0;
+    border-radius: 30%;
+    cursor: pointer;
+
+}
+
+.page:hover{
+    background-color: #2f62e3;
+}
+
+.page.active{
+    font-weight: bold;
+    border: 3px solid #48ff00;
+    border-radius: 50%;
+}
+
+.postsCount{
+
+}
