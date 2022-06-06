@@ -1,23 +1,32 @@
 import './App.css';
 import PostList from "./components/PostList";
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 import CreatePostForm from "./components/CreatePostForm";
 import MyModal from "./components/UI/MyModal";
 import ButtonCreatePost from "./components/UI/ButtonCreatePost";
 import PostFilter from "./components/PostFilter";
-import {usePosts} from "./components/hooks/usePosts";
+import usePosts from "./components/hooks/usePosts";
+import PostService from "./components/API/PostService";
+import {useFetching} from "./components/hooks/useFetching";
+
+
+
 
 function App() {
-    const [posts, setPosts] = useState([
-        {id: 6546645, title: 'B', body: "Z"},
-        {id: 4323312, title: 'Z', body: "C"},
-        {id: 5435433, title: 'A', body: "B"},
-        {id: 6211326, title: 'C', body: "D"},
-        {id: 8444337, title: 'H', body: "A"},
-    ])
 
-    const deletePost = (player) => {
-        setPosts(posts.filter(pl => player.id !== pl.id))
+    const [posts, setPosts] = useState([]);
+
+    const [fetchPosts, isPostsLoading, postsError] = useFetching(async () => {
+        const posts = await PostService.getAll()
+        setPosts(posts)
+    });
+
+    useEffect(() => {
+        fetchPosts()
+    }, [])
+
+    const deletePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
     }
 
     const addPost = (newPost) => {
@@ -34,6 +43,7 @@ function App() {
         <div className="App">
             <div className="wrapper">
                 <div className="content">
+
 
                     <ButtonCreatePost
                         setModalActive={setModalActive}
@@ -56,6 +66,8 @@ function App() {
 
 
                     <PostList
+                        postsError={postsError}
+                        isPostsLoading={isPostsLoading}
                         posts={sortedAndSearchedPosts}
                         deletePost={deletePost}
                     />

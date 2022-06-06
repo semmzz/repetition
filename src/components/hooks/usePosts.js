@@ -1,21 +1,19 @@
-import React from 'react';
-import {useMemo} from "react";
+import React, {useMemo} from 'react';
 
 const useSortedPosts = (posts, sort) => {
-    const sortedPosts = useMemo(() => {
+    return useMemo(() => {
         if (sort) {
             return [...posts].sort((a, b) => a[sort].localeCompare(b[sort]));
         }
         return posts;
     }, [sort, posts]);
-    return sortedPosts;
 }
 
 
-export const usePosts = (posts, filter) => {
+const usePosts = (posts, filter) => {
     const sortedPosts = useSortedPosts(posts, filter.sort)
 
-    const sortedAndSearchedPosts = useMemo(() => {
+    return useMemo(() => {
         // eslint-disable-next-line default-case
         switch (filter.find) {
             case 'all':
@@ -27,6 +25,6 @@ export const usePosts = (posts, filter) => {
                 return sortedPosts.filter(el => el.body.toLowerCase().includes(filter.query.toLowerCase()))
         }
     }, [filter.query, sortedPosts, filter.find]);
-
-    return sortedAndSearchedPosts;
 }
+
+export default usePosts;
