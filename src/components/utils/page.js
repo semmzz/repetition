@@ -10,3 +10,12 @@ export const getPagesArray = (totalPages) => {
 
     return result
 }
+
+export const getPostsCountInPage = () => {
+    const result = []
+
+    for (let count of [3, 5, 7, 10, 15]) {
+        result.push({value: count, name: `Posts in page: ${count}`})
+    }
+    return result
+}

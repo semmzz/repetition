@@ -8,7 +8,7 @@ import PostFilter from "./components/PostFilter";
 import usePosts from "./components/hooks/usePosts";
 import PostService from "./components/API/PostService";
 import {useFetching} from "./components/hooks/useFetching";
-import {getPagesArray, getPagesCount} from "./components/utils/page";
+import {getPagesArray, getPagesCount, getPostsCountInPage} from "./components/utils/page";
 import Pagination from "./components/UI/Pagination";
 
 
@@ -42,13 +42,7 @@ function App() {
         setPosts([...posts, newPost])
     }
 
-    const postsInPageArray = [
-        {value: 3, name: "Posts in page: 3"},
-        {value: 5, name: "Posts in page: 5"},
-        {value: 7, name: "Posts in page: 7"},
-        {value: 10, name: "Posts in page: 10"},
-        {value: 15, name: "Posts in page: 15"},
-    ]
+    const postsCountInPageArray = getPostsCountInPage()
 
     const [filter, setFilter] = useState({sort: '', query: '', find: 'all'});
     const [modalActive, setModalActive] = useState(false);
@@ -89,7 +83,7 @@ function App() {
                         pagesArray={pagesArray}
                         currentPage={currentPage}
                         limit={limit}
-                        postsInPageArray={postsInPageArray}
+                        postsInPageArray={postsCountInPageArray}
                         setCurrentPage={setCurrentPage}
                         setLimit={setLimit}
                     />

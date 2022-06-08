@@ -22,7 +22,7 @@
 .pages{
     display: flex;
     justify-content: space-between;
-    max-width: 75%;
+    width: 75%;
     flex-wrap: wrap;
 }
 
