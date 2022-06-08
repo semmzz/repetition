@@ -24,7 +24,6 @@
 
 
 .buttonDelete {
-
     cursor: pointer;
     font-family: 'Titillium Web', sans-serif;
     position: relative;
@@ -36,9 +35,27 @@
     background: #ECECEC;
     border-radius: 0 15px 15px 0;
     transition: .4s;
+    margin-left: 2px;
 }
 
-.buttonDelete:hover {
-    background: #636363;
+.buttonDelete:hover,
+.btnOpen:hover{
+    background: rgba(101, 64, 211, 0.38);
+}
+.postBtns{
+    display: flex;
+}
+.btnOpen{
+    cursor: pointer;
+    font-family: 'Titillium Web', sans-serif;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #00BCD4;
+    background: #ECECEC;
+    border-radius:  15px 0 0 15px;
+    transition: .4s;
 }
 

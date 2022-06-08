@@ -24,6 +24,4 @@ const Load = () => {
     );
 };
 
-// 6A6B40
-
 export default Load;
